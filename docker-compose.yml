@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    # En EasyPanel el dominio se mapea al puerto 80 de este servicio (Domains → Port 80).
+    expose:
+      - "80"
