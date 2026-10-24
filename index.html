@@ -25,7 +25,7 @@
 <meta name="twitter:image" content="https://ambarcrm.ambarrojostudios.cloud/og-cover.png">
 <meta name="twitter:image:alt" content="AmbarCRM: CRM para WhatsApp con API oficial, IA y Coexistence.">
 <meta name="theme-color" content="#D7083F">
-<link rel="icon" type="image/png" href="isotipo.png">
+<link rel="icon" type="image/png" href="isotipo-sm.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -101,8 +101,29 @@ p{margin:0}
 .nav-login{font-weight:600;font-size:14.5px;text-decoration:none;color:hsl(var(--ink-2));padding:8px 10px}
 .nav-login:hover{color:hsl(var(--primary))}
 .progress{position:absolute;left:16px;right:16px;bottom:-1px;height:2px;border-radius:2px;background:linear-gradient(90deg,hsl(var(--primary)),hsl(var(--magenta)));transform-origin:left;transform:scaleX(0)}
-@media (max-width:900px){.nav-links{display:none}.nav-login{margin-left:auto}}
-@media (max-width:420px){.nav-login{display:none}.nav .btn{margin-left:auto}}
+.nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;flex:none;border-radius:11px;border:1px solid hsl(var(--border));background:hsl(var(--card));color:hsl(var(--ink));cursor:pointer}
+.nav-toggle-bars{display:grid;gap:4px;width:18px}
+.nav-toggle-bars i{display:block;height:2px;border-radius:2px;background:currentColor;transition:transform .25s var(--ease),opacity .2s}
+.nav.open .nav-toggle-bars i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav.open .nav-toggle-bars i:nth-child(2){opacity:0}
+.nav.open .nav-toggle-bars i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.nav-mobile{display:none}
+@media (max-width:900px){
+  .nav-links{display:none}
+  .nav-login{display:none}
+  .nav-inner{position:relative;gap:10px}
+  .nav .btn{margin-left:auto}
+  .nav-toggle{display:inline-flex}
+  .nav-mobile{display:block;position:absolute;top:calc(100% + 8px);left:0;right:0;padding:8px;border-radius:14px;background:hsl(var(--card)/.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid hsl(var(--border));box-shadow:var(--shadow-lift);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s}
+  .nav.open .nav-mobile{opacity:1;visibility:visible;transform:none}
+  .nav-mobile a{display:flex;align-items:center;min-height:48px;padding:0 12px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;color:hsl(var(--ink-2))}
+  .nav-mobile a:hover,.nav-mobile a:focus-visible{background:hsl(var(--surface));color:hsl(var(--ink))}
+  .nav-mobile-login{margin-top:4px;border-top:1px solid hsl(var(--border));border-radius:0 0 10px 10px;color:hsl(var(--primary))}
+}
+@media (max-width:420px){
+  .nav-inner{gap:8px}
+  .nav-toggle{width:40px;height:40px}
+}
 
 /* Hero */
 .hero{position:relative;padding:150px 0 90px;overflow:hidden}
@@ -594,7 +615,7 @@ html{scroll-padding-top:100px}
   <div class="wrap">
     <div class="nav-inner">
       <a class="brand" href="#inicio" aria-label="AmbarCRM, inicio">
-        <img src="isotipo.png" alt="" width="34" height="21">
+        <img src="isotipo-sm.webp" alt="" width="34" height="21">
         <b>Ambar<span>CRM</span></b>
       </a>
       <nav class="nav-links" aria-label="Secciones">
@@ -606,7 +627,18 @@ html{scroll-padding-top:100px}
       </nav>
       <a class="nav-login" href="https://crm.ambarrojostudios.cloud/login">Entrar</a>
       <a class="btn btn-primary" data-wa="Hola, quiero agendar una demo de AmbarCRM" href="https://wa.me/529612255126?text=Hola%2C%20quiero%20agendar%20una%20demo%20de%20AmbarCRM" target="_blank" rel="noopener">Agenda una demo</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-mobile">
+        <span class="nav-toggle-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
       <span class="progress" id="progress"></span>
+      <div class="nav-mobile" id="nav-mobile">
+        <a href="#funciones">Funciones</a>
+        <a href="#embudos">Embudos</a>
+        <a href="#conexion-oficial">Conexión oficial</a>
+        <a href="#planes">Planes</a>
+        <a href="#preguntas">Preguntas</a>
+        <a class="nav-mobile-login" href="https://crm.ambarrojostudios.cloud/login">Entrar a mi cuenta</a>
+      </div>
     </div>
   </div>
 </header>
@@ -618,7 +650,7 @@ html{scroll-padding-top:100px}
       <div>
         <a class="pill provider-pill load" href="#conexion-oficial" style="text-decoration:none"><svg aria-hidden="true"><use href="#i-check-c"/></svg><span>Meta Tech Provider aprobado</span><span class="pill-separator" aria-hidden="true"></span>Ámbar Rojo Studios</a>
         <p class="hero-category load">CRM para WhatsApp con API oficial + IA</p>
-        <h1 class="load">Tu mismo WhatsApp.<span class="grad-text">Un equipo listo para vender.</span></h1>
+        <h1 class="load">Tu mismo WhatsApp. <span class="grad-text">Un equipo listo para vender.</span></h1>
         <p class="lead load">Tus clientes ya están en WhatsApp. Dale a tu equipo un lugar para atenderlos, dar seguimiento y cerrar ventas. <strong>Conecta tu número con la API oficial de Meta y sigue usando tu app WhatsApp Business con Coexistence.</strong></p>
         <div class="hero-ctas load">
           <a class="btn btn-primary" data-wa="Hola, quiero agendar una demo de AmbarCRM" href="https://wa.me/529612255126?text=Hola%2C%20quiero%20agendar%20una%20demo%20de%20AmbarCRM" target="_blank" rel="noopener">Quiero ver una demo <svg><use href="#i-arrow"/></svg></a>
@@ -1002,7 +1034,7 @@ html{scroll-padding-top:100px}
   <div class="wrap">
     <div class="foot">
       <div>
-        <a class="brand" href="#inicio"><img src="isotipo.png" alt="" width="34" height="21"><b>Ambar<span>CRM</span></b></a>
+        <a class="brand" href="#inicio"><img src="isotipo-sm.webp" alt="" width="34" height="21"><b>Ambar<span>CRM</span></b></a>
         <p>CRM para WhatsApp con API oficial de Meta, Coexistence e inteligencia artificial. Desarrollado por Ámbar Rojo Studios, Meta Tech Provider aprobado, en Tuxtla Gutiérrez, Chiapas.</p>
       </div>
       <div>
@@ -1040,6 +1072,22 @@ html{scroll-padding-top:100px}
   };
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  // Menú móvil
+  const navToggle = document.getElementById("navToggle");
+  const navMobile = document.getElementById("nav-mobile");
+  if (navToggle && navMobile) {
+    const setNav = (open) => {
+      nav.classList.toggle("open", open);
+      navToggle.setAttribute("aria-expanded", String(open));
+      navToggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    };
+    navToggle.addEventListener("click", () => setNav(!nav.classList.contains("open")));
+    navMobile.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setNav(false)));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
+    document.addEventListener("click", (e) => { if (nav.classList.contains("open") && !nav.contains(e.target)) setNav(false); });
+    matchMedia("(min-width:901px)").addEventListener("change", (e) => { if (e.matches) setNav(false); });
+  }
 
   // Revelado al entrar en pantalla
   if ("IntersectionObserver" in window) {
